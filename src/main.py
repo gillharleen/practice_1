@@ -2,6 +2,7 @@ import logging
 import os
 from pathlib import Path
 import ingestor
+import analytics
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -21,3 +22,5 @@ logging.getLogger().setLevel(os.getenv("LOG_LEVEL", "WARNING"))
 if __name__ == "__main__":
     ingestor.ingest_csv(PROJECT_ROOT / "src" / "input_files")
     print("Done. Check the logs folder.")
+    analytics.show_analytics()
+    print("Done. Analystics done.")

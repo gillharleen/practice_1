@@ -38,3 +38,35 @@ def insert_data_to_db(rows):
                 )
     finally:
         connection.close()
+
+
+def run_query(sql):
+    connection = get_connection()
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute(sql)
+            return cursor.fetchall()
+    finally:
+        connection.close()
+
+
+def total_and_average():
+    return run_query("""
+        SELECT SUM(amount), ROUND(AVG(amount), 2), COUNT(*)
+        FROM exp
+    """)
+def spending_by_category():
+    return run_query("""
+        SELECT category, SUM(amount) AS total
+        FROM exp
+        GROUP BY category
+        ORDER BY total DESC
+    """)
+
+def top_expenses():
+    return run_query("""
+        SELECT name, amount, category
+        FROM exp
+        ORDER BY amount DESC
+        LIMIT 3
+    """)
