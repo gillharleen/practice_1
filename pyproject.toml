@@ -1,0 +1,27 @@
+[project]
+name = "practice-project"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "gillharleencd..", email = "gillharleenkaur@gmail.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "psycopg2-binary>=2.9.13",
+    "pydantic>=2.14.0",
+    "python-dotenv>=1.2.4",
+    "tabulate>=0.10.0",
+]
+
+[project.scripts]
+practice-project = "practice_project:main"
+
+[build-system]
+requires = ["uv_build>=0.12.23,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
