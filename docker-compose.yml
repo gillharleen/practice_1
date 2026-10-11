@@ -23,4 +23,15 @@ services:
         - "5051:80"
       depends_on:
         db:
-          condition: service_healthy     
+          condition: service_healthy    
+  app:
+    build: .
+    env_file: .env
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_PORT: "5432"
+    volumes:
+      - ./logs:/app/logs
+    depends_on:
+      db:
+        condition: service_healthy          
